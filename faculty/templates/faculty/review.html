@@ -1,0 +1,154 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'review.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>REQUEST</title>
+</head>
+
+<body>
+    <div class="your-div">
+        <!-- Your content goes here -->
+        <div class="hai">
+            <p class="christ">CHRIST COLLEGE OF ENGINEERING, IRINJALAKUDA</p>
+            <div id="currentDate"></div>
+        </div>
+        <div class="images">
+            <img src="{% static 'images/powerLoginButton.png' %}"
+                alt="" />
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="left">
+            <div class="profile">
+                <div class="div-img">
+                    <img src="{% static 'images/profile.png' %}" alt="">
+                </div>
+            </div>
+            <div class="box" style="background-color: #271241; color: rgb(255, 255, 255)">
+                <p>REQUEST</p>
+            </div>
+            <div class="box">
+                <p>HISTORY</p>
+            </div>
+            <div class="box">
+                <p>NOTIFICATIONS</p>
+            </div>
+        </div>
+
+        <div class="right">
+            <div>
+                <div>
+                    <p class="r1">Message Viewer</p>
+                </div>
+                <div>
+                    <p style="font-size: 15px;">FROM</p>
+                </div>
+                <div class="r3">
+                    <p>{{ stat.sender }}</p>
+                </div>
+                <span></span>
+                <div class="div1">
+
+                    <div>
+                        <p style="font-size: 15px;"></p> Department</p>
+                        <div class="r3">
+                            <p>{{ stat.sender }}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="margin-right: 110px;">Semester</p>
+                        <div class="sem">
+                            <p>{{ stat.sem }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="div1">
+
+                    <div>
+                        <p style="font-size: 15px;"></p> Date</p>
+                        <div class="date-picker">
+                            <p style="margin-left: 10px; margin-right:10px"> Sent date </p>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="margin-right: 130px;">Status</p>
+                        
+                        <div class="date-picker">
+                            <p style="margin-left: 10px; margin-right:10px"> 
+                            {% if stat.approved == True %}
+                                Approved
+                            {% elif stat.rejected == True %}
+                                Rejected
+                            {% else %}
+                                Reverted
+                            {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p style="font-size: 15px;">Subject:</p>
+                </div>
+                
+                <div class="date-picker" style="height: fit-content;width:max-content; text-align:left; padding: 3px;">
+                    <p style="margin-left: 10px; margin-right:10px"> {{ stat.subject }} </p>
+                </div>
+                 <div>
+                    <p style="font-size: 15px;">Body:</p>
+                </div>
+                <div class="date-picker" style="height: fit-content;width:max-content; text-align:left; padding: 3px;">
+                    <p > {{ stat.body|linebreaks }} </p>
+                </div>
+                
+                <div>
+                    <p style="font-size:15px ;">Remarks</p>
+                </div>
+                <div class="input-body">
+                    <label for="myInput"></label>
+                    <div class="date-picker" style="height: fit-content; width: max-content; text-align: left; padding: 1px;">
+                        <p style="margin-left: 10px; margin-right:10px"> {{ stat.remarks }} </p>
+                    </div>
+                        
+                    
+                
+                </div>
+
+            </div>
+            <div>
+                <form>
+
+
+                    <input type="button" onclick="window.location.href='{% url 'fdownload' stat.id %}'"  value="Download" class="approve"> 
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
+
+<script>
+    // Get the current date
+    var currentDate = new Date();
+
+    // Format the date (optional)
+    var options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    };
+    var formattedDate = currentDate.toLocaleDateString("en-US", options);
+
+    // Display the date in a div
+    document.getElementById("currentDate").textContent = formattedDate;
+</script>
+
+</html>

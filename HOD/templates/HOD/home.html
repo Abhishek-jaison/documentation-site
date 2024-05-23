@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>HOME PAGE</title>
+  </head>
+  <body>
+    <div class="your-div">
+      <!-- Your content goes here -->
+      <div class="hai">
+        <p class="christ">CHRIST COLLEGE OF ENGINEERING, IRINJALAKUDA</p>
+        <div id="currentDate"></div>
+      </div>
+      <div class="images">
+        
+        <a href="{% url 'hlogout' %}"><img 
+        src="{% static 'images/powerLoginButton.png' %}"
+        alt=""
+      /></a>
+      </div>
+    </div>
+
+    <div class="content">
+        <div class="left">
+            <div class="profile">
+                <div class="div-img" >
+                    <img src="{% static 'images/hod.png' %}" alt="">
+                </div>
+            </div>
+            <div class="box" style="background-color: #271241; color: rgb(255, 255, 255)"><p>HOME</p></a></div>
+            <div class="box"><a href="{% url 'hhistory' %}"><p>HISTORY</p></a></div>
+            <div class="box"><a href="{% url 'hnotifications' %}"><p>NOTIFICATIONS</p></a></div>
+        </div>
+        <div class="right">
+            <div class="right-sub"><p class="main">{{ user.get_username }}</p></div>
+            <div><p class="sub">Head Of Department , CSE Department</p></div>
+        </div>
+        is in hod home
+    </div>
+  </body>
+
+
+
+  <script>
+    // Get the current date
+    var currentDate = new Date();
+
+    // Format the date (optional)
+    var options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    var formattedDate = currentDate.toLocaleDateString("en-US", options);
+
+    // Display the date in a div
+    document.getElementById("currentDate").textContent = formattedDate;
+  </script>
+</html>

@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>NOTIFICATIONS PAGE</title>
+  </head>
+  <body>
+    <div class="your-div">
+      <div class="hai">
+        <p class="christ">CHRIST COLLEGE OF ENGINEERING, IRINJALAKUDA</p>
+        <div id="currentDate"></div>
+      </div>
+      <div class="images">
+        <img src="{% static 'images/powerLoginButton.png' %}" />
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="left">
+        <div class="profile">
+          <div class="div-img">
+            <img src="{% static 'images/hod.png' %}" alt="" />
+          </div>
+        </div>
+        <div class="box">
+          <a href="{% url 'hhome' %}"><p>HOME</p></a>
+        </div>
+        <div class="box">
+          <a href="{% url 'hhistory' %}"><p>HISTORY</p></a>
+        </div>
+        <div
+          class="box"
+          style="background-color: #271241; color: rgb(255, 255, 255)"
+        >
+          <p>NOTIFICATIONS</p>
+        </div>
+      </div>
+
+      <div class="right" style="display: grid">
+        <div class="right sub" style="border-bottom: 10px">
+          <p class="main">
+            {{ user.get_username }} <br />Head Of Department , CSE Department
+          </p>
+        </div>
+        {% for stat in status %}
+        {% if stat.checked == False %}
+        <div class="right not">
+          <div
+            style="
+              font-family: Arial, Helvetica, sans-serif;
+              display: flex;
+              width: 100%;
+            ">
+            title:<a href="{% url 'viewer' stat.id %}">{{ stat.subject }}</a>
+        
+            <div class="upload-container">
+              <p><span id="uploadDate"></span></p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor%}
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // Get the current date
+    var currentDate = new Date();
+
+    // Format the date (optional)
+    var options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    var formattedDate = currentDate.toLocaleDateString("en-US", options);
+
+    // Display the date in a div
+    document.getElementById("currentDate").textContent = formattedDate;
+  </script>
+</html>
